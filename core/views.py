@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from pets.models import CategoryModel,Pet_Model
 
 def home(request, category_slug = None):
-    data = Pet_Model.objects.all()
+    data = Pet_Model.objects.all().order_by('-name')
     categorys = CategoryModel.objects.all()
     if category_slug is not None:
         category_name = CategoryModel.objects.get(slug = category_slug)
