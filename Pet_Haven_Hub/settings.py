@@ -13,6 +13,9 @@ SECRET_KEY = 'django-insecure-s9ld=nn34sle&kkxg$kqi+134cpqb*-xcpn-gl4rm1%&w^!w+5
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOWED_ORIGINS = [
+    'https://pethavenhub-project.onrender.com',
+]
 
 
 # Application definition
