@@ -16,6 +16,9 @@ ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
     'https://pethavenhub-project.onrender.com',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://pethavenhub-project.onrender.com',
+]
 
 
 # Application definition
