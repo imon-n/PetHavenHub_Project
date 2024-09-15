@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+{% block content %}
+    <div class="d-flex flex-wrap px-5 pt-3 ">
+        <div class="class col-2 mt-5">
+            {% if request.user.is_authenticated %}
+                <a class="btn btn-success btn-sm mb-2" href="{% url "profile_history" %}">Purchase History</a>
+            {% endif %}
+            <h5>Pet Type :</h5>
+            {% for category in categorys %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio"  name="category" id="{{category.id}}" >
+                <label class="form-check-label" for="{{category.id}}">
+                <a href="{% url 'category_wise_pet' category.slug %}" class="text-decoration-none text-dark" >{{category.category_name}}</a>
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="class col-10">
+            <h3 class="text-center"> Aaviable Pets : {{data | length}}</h3>
+
+            <div class="d-flex flex-wrap justify-content-center">
+                {% for pet in data %}
+                    <div class="pet" style="width: 18rem; margin: 10px; border-radius:10px">
+                        {% if pet.image %}
+                            <img class="pet-img-top" src="{{ pet.image.url }}" alt="{{ pet.name }}">
+                        {% endif %}
+                        <div class="pet-body text-center">
+                            <h4 class="pet-title mt-2">{{ pet.name }}</h4>
+                            <span>{{ pet.desc |truncatewords:8 }}</span>
+                            <h6> Price: BDT {{ pet.price }}/-</h6>
+                            <a href="{% url 'adopt_pet' pet.id %}" class="btn btn-warning">Adoption Here</a>
+                        </div>                
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
